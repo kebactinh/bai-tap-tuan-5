@@ -1,33 +1,20 @@
 package com.luvina.library.manager.models;
 
-import com.luvina.library.manager.annotation.Entity;
-
-@Entity(name = "Reader")
 public class Reader {
-	private String readerCode;
-
-	private String readerName;
+	private Person person;
 
 	private String phoneNumber;
 
-	public Reader(String readerCode, String readerName, String phoneNumber) {
-		this.readerCode = readerCode;
-		this.readerName = readerName;
+	public Reader(Person person, String phoneNumber) {
+		this.person = person;
 		this.phoneNumber = phoneNumber;
 	}
 
 	/**
-	 * @return the readerCode
+	 * @return the person
 	 */
-	public String getReaderCode() {
-		return readerCode;
-	}
-
-	/**
-	 * @return the readerName
-	 */
-	public String getReaderName() {
-		return readerName;
+	public Person getPerson() {
+		return person;
 	}
 
 	/**
@@ -36,4 +23,5 @@ public class Reader {
 	public String getPhoneNumber() {
 		return phoneNumber;
 	}
+
 }

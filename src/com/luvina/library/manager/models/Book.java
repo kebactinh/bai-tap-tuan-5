@@ -1,39 +1,27 @@
 package com.luvina.library.manager.models;
 
 import com.luvina.library.manager.annotation.Entity;
+import com.luvina.library.manager.interfaces.ILibraryItem;
 
 @Entity(name = "Book")
-public class Book {
-	private String bookCode;
-
-	private String bookName;
+public class Book implements ILibraryItem {
+	private LibraryItem libraryProps;
 
 	private Author author;
 
 	private String genre;
 
-	private Integer quantity;
-
-	public Book(String bookCode, String bookName, Author author, String genre, Integer quantity) {
-		this.bookCode = bookCode;
-		this.bookName = bookName;
+	public Book(LibraryItem libraryProps, Author author, String genre) {
+		this.libraryProps = libraryProps;
 		this.author = author;
 		this.genre = genre;
-		this.quantity = quantity;
 	}
 
 	/**
-	 * @return the bookCode
+	 * @return the libraryProps
 	 */
-	public String getBookCode() {
-		return bookCode;
-	}
-
-	/**
-	 * @return the bookName
-	 */
-	public String getBookName() {
-		return bookName;
+	public LibraryItem getLibraryProps() {
+		return libraryProps;
 	}
 
 	/**
@@ -50,10 +38,34 @@ public class Book {
 		return genre;
 	}
 
-	/**
-	 * @return the quantity
-	 */
-	public Integer getQuantity() {
-		return quantity;
+	@Override
+	public String getItemCode() {
+		return libraryProps.getItemCode();
 	}
+
+	@Override
+	public String getItemName() {
+		return libraryProps.getItemName();
+	}
+
+	@Override
+	public int getQuantity() {
+		return libraryProps.getQuantity();
+	}
+
+	@Override
+	public boolean borrow() {
+		return libraryProps.borrow();
+	}
+
+	@Override
+	public void returnItem() {
+		libraryProps.returnItem();
+	}
+
+	@Override
+	public boolean matches(String searchTerm) {
+		return libraryProps.matches(searchTerm);
+	}
+
 }

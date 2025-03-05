@@ -3,32 +3,29 @@ package com.luvina.library.manager.services;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.luvina.library.manager.models.Document;
+import com.luvina.library.manager.interfaces.ILibraryItem;
 
-public class Library<T extends Document> {
-	private List<T> documents;
+public class Library<T extends ILibraryItem> {
+	private List<T> items = new ArrayList<>();
 
-	public Library() {
-		documents = new ArrayList<>();
+	public void add(T item) {
+		items.add(item);
 	}
 
-	public void addDocument(T doc) {
-		documents.add(doc);
+	public void remove(T item) {
+		items.remove(item);
 	}
 
-	public List<T> search(String keyword) {
-		List<T> result = new ArrayList<>();
-		for (T doc : documents) {
-			if (doc.matches(keyword)) {
-				result.add(doc);
+	public T search(String searchTerm) {
+		for (T item : items) {
+			if (item.matches(searchTerm)) {
+				return item;
 			}
 		}
-		return result;
+		return null;
 	}
 
-	public void displayAll() {
-		for (T doc : documents) {
-			doc.displayInfo();
-		}
+	public List<T> getItems() {
+		return items;
 	}
 }
