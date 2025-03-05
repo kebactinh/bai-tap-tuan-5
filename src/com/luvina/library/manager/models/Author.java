@@ -36,5 +36,4 @@ public class Author {
 	public String getNationality() {
 		return nationality;
 	}
-
 }

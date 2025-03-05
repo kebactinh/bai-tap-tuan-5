@@ -1,27 +1,24 @@
 package com.luvina.library.manager.models;
 
 import com.luvina.library.manager.annotation.Entity;
-import com.luvina.library.manager.services.IBorrowable;
 
 @Entity(name = "Book")
-public class Book extends Document implements IBorrowable {
+public class Book {
 	private String bookCode;
 
 	private String bookName;
 
 	private Author author;
 
-	private String category;
+	private String genre;
 
 	private Integer quantity;
 
-	public Book(String documentId, String title, String bookCode, String bookName, Author author, String category,
-			Integer quantity) {
-		super(documentId, title);
+	public Book(String bookCode, String bookName, Author author, String genre, Integer quantity) {
 		this.bookCode = bookCode;
 		this.bookName = bookName;
 		this.author = author;
-		this.category = category;
+		this.genre = genre;
 		this.quantity = quantity;
 	}
 
@@ -47,10 +44,10 @@ public class Book extends Document implements IBorrowable {
 	}
 
 	/**
-	 * @return the category
+	 * @return the genre
 	 */
-	public String getCategory() {
-		return category;
+	public String getGenre() {
+		return genre;
 	}
 
 	/**
@@ -58,23 +55,5 @@ public class Book extends Document implements IBorrowable {
 	 */
 	public Integer getQuantity() {
 		return quantity;
-	}
-
-	@Override
-	public void borrow(Reader reader) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void returnItem() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void displayInfo() {
-		// TODO Auto-generated method stub
-
 	}
 }
