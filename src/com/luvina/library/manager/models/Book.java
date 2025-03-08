@@ -1,27 +1,19 @@
 package com.luvina.library.manager.models;
 
 import com.luvina.library.manager.annotation.Entity;
-import com.luvina.library.manager.interfaces.ILibraryItem;
+import com.luvina.library.manager.constant.Constants;
 
 @Entity(name = "Book")
-public class Book implements ILibraryItem {
-	private LibraryItem libraryProps;
+public class Book extends Document {
 
 	private Author author;
 
 	private String genre;
 
-	public Book(LibraryItem libraryProps, Author author, String genre) {
-		this.libraryProps = libraryProps;
+	public Book(String documentId, String documentName, int quantity, Author author, String genre) {
+		super(documentId, documentName, quantity);
 		this.author = author;
 		this.genre = genre;
-	}
-
-	/**
-	 * @return the libraryProps
-	 */
-	public LibraryItem getLibraryProps() {
-		return libraryProps;
 	}
 
 	/**
@@ -39,33 +31,8 @@ public class Book implements ILibraryItem {
 	}
 
 	@Override
-	public String getItemCode() {
-		return libraryProps.getItemCode();
-	}
-
-	@Override
-	public String getItemName() {
-		return libraryProps.getItemName();
-	}
-
-	@Override
-	public int getQuantity() {
-		return libraryProps.getQuantity();
-	}
-
-	@Override
-	public boolean borrow() {
-		return libraryProps.borrow();
-	}
-
-	@Override
-	public void returnItem() {
-		libraryProps.returnItem();
-	}
-
-	@Override
-	public boolean matches(String searchTerm) {
-		return libraryProps.matches(searchTerm);
+	public String getDetails() {
+		return String.format(Constants.BOOK_DETAIL, documentName, author.getPerson().getPersonName(), genre, quantity);
 	}
 
 }

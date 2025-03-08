@@ -1,7 +1,7 @@
 package com.luvina.library.manager.interfaces;
 
 public interface IBorrowable {
-	boolean borrow();
+	void borrowDocument();
 
-	void returnItem();
+	void returnDocument();
 }

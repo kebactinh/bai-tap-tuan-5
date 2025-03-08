@@ -1,20 +1,20 @@
 package com.luvina.library.manager.models;
 
 public class Person {
-	private String personCode;
+	private String personId;
 
 	private String personName;
 
-	public Person(String personCode, String personName) {
-		this.personCode = personCode;
+	public Person(String personId, String personName) {
+		this.personId = personId;
 		this.personName = personName;
 	}
 
 	/**
-	 * @return the personCode
+	 * @return the personId
 	 */
-	public String getPersonCode() {
-		return personCode;
+	public String getPersonId() {
+		return personId;
 	}
 
 	/**

@@ -2,9 +2,7 @@ package com.luvina.library.manager.models;
 
 import java.time.OffsetDateTime;
 
-import com.luvina.library.manager.interfaces.ILibraryItem;
-
-public class BorrowTransaction<T extends ILibraryItem> {
+public class BorrowTransaction<T extends Document> {
 	private Reader reader;
 
 	private T item;
@@ -17,7 +15,6 @@ public class BorrowTransaction<T extends ILibraryItem> {
 		this.reader = reader;
 		this.item = item;
 		this.borrowDate = borrowDate;
-		this.returnDate = null;
 	}
 
 	/**
@@ -46,6 +43,13 @@ public class BorrowTransaction<T extends ILibraryItem> {
 	 */
 	public OffsetDateTime getReturnDate() {
 		return returnDate;
+	}
+
+	/**
+	 * @param returnDate the returnDate to set
+	 */
+	public void setReturnDate(OffsetDateTime returnDate) {
+		this.returnDate = returnDate;
 	}
 
 }
