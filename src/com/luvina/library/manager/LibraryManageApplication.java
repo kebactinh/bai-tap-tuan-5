@@ -1,9 +1,13 @@
 package com.luvina.library.manager;
 
+import java.time.OffsetDateTime;
+import java.util.List;
+
 import com.luvina.library.manager.models.Author;
 import com.luvina.library.manager.models.Book;
 import com.luvina.library.manager.models.Document;
 import com.luvina.library.manager.models.Person;
+import com.luvina.library.manager.models.Reader;
 import com.luvina.library.manager.services.Library;
 
 public class LibraryManageApplication {
@@ -13,28 +17,21 @@ public class LibraryManageApplication {
 		Author author = new Author(person, "VN");
 		Document doc1 = new Book("1", "test", 5, author, "test");
 
+		Reader re = new Reader(person, "");
+
 		Library<Document> library = new Library<>();
 		library.addDocument(doc1);
 
-		library.borrowDocument(doc1);
+		library.borrowDocument(re, doc1, OffsetDateTime.now());
 
-		System.out.println(doc1.getDocumentName());
-		System.out.println(doc1.getQuantity());
-
-		Document doc = new Book("1", "test2", 6, author, "test");
-
-		Library<Document> library2 = new Library<>();
-		library2.addDocument(doc);
-
-		library2.borrowDocument(doc);
-
-		System.out.println(doc.getDocumentName());
-		System.out.println(doc.getQuantity());
-
-		library2.returnDocument(doc);
-
-		System.out.println(doc.getDocumentName());
-		System.out.println(doc.getQuantity());
+		List<Document> ketQuaTimKiem = library.searchDocumentByName("test");
+		for (Document sach : ketQuaTimKiem) {
+			System.out.println(sach.getDetails());
+		}
+		
+		var a = library.getBorrowTransactions();
+		library.returnDocument(a.get(0), OffsetDateTime.now());
+		var b = library.getBorrowTransactions();
 
 	}
 
